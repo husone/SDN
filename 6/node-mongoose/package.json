@@ -1,0 +1,17 @@
+{
+  "name": "node-mongoose",
+  "version": "1.0.0",
+  "description": "Node Mongoose Example",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Mongoose"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^7.2.1"
+  }
+}
