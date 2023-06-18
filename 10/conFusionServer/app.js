@@ -9,6 +9,7 @@ var leaderRouter = require("./routes/leaderRouter");
 var userRouter = require("./routes/userRouter");
 const passport = require("passport");
 const authenticate = require("./authenticate");
+const cors = require("cors");
 
 var indexRouter = require("./routes/index");
 
@@ -32,7 +33,7 @@ connect.then(
 
 var app = express();
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(session({
   name: 'session-id',
   secret: '12345-67890-09876-54321',
