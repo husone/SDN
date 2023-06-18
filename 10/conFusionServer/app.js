@@ -51,21 +51,6 @@ function auth(req, res, next) {
     next();
   }
   else {
-    // if (!req.session.user) {
-    //   var err = new Error('You are not authenticated!');
-    //   err.status = 403;
-    //   return next(err);
-    // }
-    // else {
-    //   if (req.session.user === 'authenticated') {
-    //     next();
-    //   }
-    //   else {
-    //     var err = new Error('You are not authenticated!');
-    //     err.status = 403;
-    //     return next(err);
-    //   }
-    // }
     if (!req.user) {
       var err = new Error('You are not authenticated!');
       err.status = 403;

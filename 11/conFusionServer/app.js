@@ -8,7 +8,9 @@ var promoRouter = require("./routes/promoRouter");
 var leaderRouter = require("./routes/leaderRouter");
 var userRouter = require("./routes/userRouter");
 const passport = require("passport");
+const mongoose = require("mongoose");
 const authenticate = require("./authenticate");
+var config = require('./config');
 
 var indexRouter = require("./routes/index");
 
@@ -17,8 +19,7 @@ var FileStore = require('session-file-store')(session);
 
 
 
-const mongoose = require("mongoose");
-const url = "mongodb://127.0.0.1:27017/conFusion";
+const url = config.mongoUrl;
 const connect = mongoose.connect(url);
 
 connect.then(
@@ -45,41 +46,23 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(cookieParser('12345-67890'));
 
-function auth(req, res, next) {
-  console.log(req.session);
-  if (req.originalUrl == '/users/login' || req.originalUrl == '/users/signup' || req.originalUrl == "/") {
-    next();
-  }
-  else {
-    // if (!req.session.user) {
-    //   var err = new Error('You are not authenticated!');
-    //   err.status = 403;
-    //   return next(err);
-    // }
-    // else {
-    //   if (req.session.user === 'authenticated') {
-    //     next();
-    //   }
-    //   else {
-    //     var err = new Error('You are not authenticated!');
-    //     err.status = 403;
-    //     return next(err);
-    //   }
-    // }
-    if (!req.user) {
-      var err = new Error('You are not authenticated!');
-      err.status = 403;
-      next(err);
-    }
-    else {
-      next();
-    }
-  }
-
-}
-
-
-app.use(auth);
+// function auth(req, res, next) {
+//   console.log(req.session);
+//   if (req.originalUrl == '/users/login' || req.originalUrl == '/users/signup' || req.originalUrl == "/") {
+//     next();
+//   }
+//   else {
+//     if (!req.user) {
+//       var err = new Error('You are not authenticated!');
+//       err.status = 403;
+//       next(err);
+//     }
+//     else {
+//       next();
+//     }
+//   }
+// }
+// app.use(auth);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
