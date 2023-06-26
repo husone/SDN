@@ -19,7 +19,7 @@ userRouter.post('/signup', (req, res, next) => {
                     user.firstname = req.body.firstname;
                 if (req.body.lastname)
                     user.lastname = req.body.lastname;
-                user.save((err, user) => {
+                user.save().then((err, user) => {
                     if (err) {
                         res.statusCode = 500;
                         res.setHeader('Content-Type', 'application/json');
