@@ -17,7 +17,7 @@ var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
- * Create HTTP server.
+ * Create HTTPS server.
  */
 
 var options = {
@@ -30,7 +30,7 @@ var secureServer = https.createServer(options, app);
  * Listen on provided port, on all network interfaces.
  */
 
-secureServer.listen(port);
+secureServer.listen(3443);
 secureServer.on('error', onError);
 secureServer.on('listening', onListening);
 
