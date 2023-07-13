@@ -13,7 +13,7 @@ var fs = require('fs');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '3443');
 app.set('port', port);
 
 /**
@@ -24,13 +24,14 @@ var options = {
   key: fs.readFileSync(__dirname + '/private.key'), cert:
     fs.readFileSync(__dirname + '/certificate.pem')
 };
+// console.log(options);
 var secureServer = https.createServer(options, app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-secureServer.listen(3443);
+secureServer.listen(port);
 secureServer.on('error', onError);
 secureServer.on('listening', onListening);
 
@@ -92,4 +93,5 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+  console.log("Server listening on port 3443: " + "https://localhost:"+ port);
 }
